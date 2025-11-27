@@ -5,7 +5,7 @@ export default function NotFoundPage() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-center px-6 py-20">
 
-      {/* Big 404 text */}
+      {/* 404 text */}
       <h1 className="text-7xl font-extrabold text-blue-600 mb-4">404</h1>
 
       {/* Title */}
@@ -36,7 +36,7 @@ export default function NotFoundPage() {
         </Link>
       </div>
 
-      {/* Decorative illustration */}
+      {/* Decoration */}
       <div className="w-60 mt-12">
         <Image
           src="/placeholder.png"

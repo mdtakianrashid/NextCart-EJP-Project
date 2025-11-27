@@ -22,26 +22,19 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   
-  // Newsletter State
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("idle"); // 'idle' | 'loading' | 'success' | 'error'
-  const [toast, setToast] = useState(null); // { message, type }
-
-  // 1. Handle Input: strict no-space policy
+  const [status, setStatus] = useState("idle");
+  const [toast, setToast] = useState(null);
   const handleEmailChange = (e) => {
-    // Instantly remove any whitespace from the input
     const cleanValue = e.target.value.replace(/\s/g, "");
     setEmail(cleanValue);
     
-    // Clear error state if user starts typing again
     if (status === "error") setStatus("idle");
   };
 
-  // 2. Handle Subscription
   const handleSubscribe = (e) => {
     e.preventDefault();
 
-    // Strict Email Regex Pattern
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
     if (!email) {
@@ -56,31 +49,23 @@ export default function Footer() {
       return;
     }
 
-    // Simulate API Call
     setStatus("loading");
     setTimeout(() => {
       setStatus("success");
       showToast("Welcome to the club! 🚀", "success");
-      setEmail(""); // Clear input
-      
-      // Reset button state after a few seconds
+      setEmail("");
       setTimeout(() => setStatus("idle"), 3000);
     }, 1500);
   };
 
-  // Helper to trigger toast
   const showToast = (message, type) => {
     setToast({ message, type });
-    // Auto-dismiss after 4 seconds
     setTimeout(() => setToast(null), 4000);
   };
 
   return (
     <footer className="bg-gray-950 text-gray-300 border-t border-gray-800 pt-16 pb-8 font-sans relative overflow-hidden">
       
-      {/* ======================= */}
-      {/* FANTASTIC TOAST ALERT   */}
-      {/* ======================= */}
       <AnimatePresence>
         {toast && (
           <motion.div
@@ -112,7 +97,7 @@ export default function Footer() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        {/* TOP SECTION: NEWSLETTER */}
+        {/* NEWSLETTER */}
         <div className="grid md:grid-cols-2 gap-8 items-center mb-16 border-b border-gray-800 pb-12">
           <div>
             <h3 className="text-2xl font-bold text-white mb-2">Join our Newsletter</h3>
@@ -155,10 +140,9 @@ export default function Footer() {
           </form>
         </div>
 
-        {/* MIDDLE SECTION: LINKS */}
+        {/* LINKS */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           
-          {/* Column 1: Brand */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2 group w-fit">
               <div className="bg-linear-to-br from-cyan-500 to-blue-600 p-2 rounded-lg group-hover:shadow-[0_0_15px_rgba(6,182,212,0.5)] transition-all">
@@ -179,7 +163,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Quick Links */}
           <div>
             <h4 className="text-white font-bold mb-6">Quick Links</h4>
             <ul className="space-y-3 text-sm">
@@ -190,7 +173,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Customer Care */}
           <div>
             <h4 className="text-white font-bold mb-6">Customer Care</h4>
             <ul className="space-y-3 text-sm">
@@ -201,7 +183,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Contact */}
           <div>
             <h4 className="text-white font-bold mb-6">Contact Us</h4>
             <ul className="space-y-4 text-sm">
@@ -221,7 +202,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* BOTTOM SECTION: COPYRIGHT */}
+        {/* COPYRIGHT */}
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600">
           <p>© {currentYear} NextCart Inc. All rights reserved.</p>
           <div className="flex gap-6">
@@ -234,8 +215,6 @@ export default function Footer() {
     </footer>
   );
 }
-
-// Helper Components
 
 function FooterLink({ href, text }) {
   return (

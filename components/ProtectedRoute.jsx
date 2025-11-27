@@ -1,5 +1,3 @@
-// components/ProtectedRoute.jsx
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -34,7 +32,7 @@ export default function ProtectedRoute({ children }) {
   }
 
   if (!authorized) {
-    return null; // will redirect
+    return null;
   }
 
   return <>{children}</>;

@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-// ProductCard inlined below to fix preview resolution error
+import Image from "next/image";
 import { Search, SlidersHorizontal, Loader2, ShoppingBag, ShoppingCart, Eye } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Mock Data (Fallback if API fails)
 const MOCK_PRODUCTS = [
   { _id: "1", name: "Neon Gaming Headset", shortDescription: "Immersive 7.1 surround sound.", price: 129, image: "", priority: "high" },
   { _id: "2", name: "Cyberpunk Mechanical Keyboard", shortDescription: "RGB backlit keys with blue switches.", price: 199, image: "", priority: "high" },
@@ -19,7 +18,7 @@ export default function ProductsPage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [sortOrder, setSortOrder] = useState("default"); // 'default', 'low', 'high'
+  const [sortOrder, setSortOrder] = useState("default");
 
   // Fetch Products
   useEffect(() => {
@@ -31,7 +30,7 @@ export default function ProductsPage() {
         setProducts(data);
       } catch (error) {
         console.log("API not ready, using mock data:", error);
-        setProducts(MOCK_PRODUCTS); // Fallback for preview
+        setProducts(MOCK_PRODUCTS);
       } finally {
         setLoading(false);
       }
@@ -39,12 +38,10 @@ export default function ProductsPage() {
     loadProducts();
   }, []);
 
-  // 1. Filter Logic (Search)
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  // 2. Sort Logic (Price)
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     if (sortOrder === "low") return a.price - b.price;
     if (sortOrder === "high") return b.price - a.price;
@@ -150,7 +147,6 @@ export default function ProductsPage() {
   );
 }
 
-// Inlined ProductCard for Preview Stability
 function ProductCard({ product }) {
   return (
     <motion.div
@@ -164,13 +160,14 @@ function ProductCard({ product }) {
     >
       {/* Image Container */}
       <div className="relative h-48 w-full overflow-hidden bg-gray-800">
-        <image
+        <Image
           src={product.image || "/placeholder.png"}
           alt={product.name}
+          fill
           className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
         />
         
-        {/* Overlay Actions */}
+        {/* Actions */}
         <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
           <a href={`/products/${product._id}`}>
             <button className="bg-white text-gray-950 p-3 rounded-full hover:bg-cyan-400 hover:scale-110 transition-all shadow-lg cursor-pointer">

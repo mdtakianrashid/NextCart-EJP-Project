@@ -21,10 +21,6 @@ import {
 
 export default function AddProductPage() {
   const router = useRouter();
-
-  // ---------------------------------------------------------
-  // 1. LOGIC: Route Protection (UNCHANGED)
-  // ---------------------------------------------------------
   const [authorized, setAuthorized] = useState(false);
 
   useEffect(() => {
@@ -38,9 +34,6 @@ export default function AddProductPage() {
     return () => unsubscribe();
   }, [router]);
 
-  // ---------------------------------------------------------
-  // 2. LOGIC: Form State (UNCHANGED)
-  // ---------------------------------------------------------
   const [form, setForm] = useState({
     name: "",
     shortDescription: "",
@@ -60,9 +53,6 @@ export default function AddProductPage() {
     });
   };
 
-  // ---------------------------------------------------------
-  // 3. LOGIC: Submit Handler (UNCHANGED)
-  // ---------------------------------------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
@@ -107,9 +97,6 @@ export default function AddProductPage() {
     }
   };
 
-  // ---------------------------------------------------------
-  // 4. UI: Loading State (Themed)
-  // ---------------------------------------------------------
   if (!authorized) {
     return (
       <div className="min-h-screen bg-gray-950 flex flex-col items-center justify-center text-cyan-500 font-sans">
@@ -119,9 +106,6 @@ export default function AddProductPage() {
     );
   }
 
-  // ---------------------------------------------------------
-  // 5. UI: Main Render (NEON DARK THEME)
-  // ---------------------------------------------------------
   return (
     <div className="min-h-screen bg-gray-950 text-gray-100 font-sans pt-24 pb-12 px-4 md:px-8 relative overflow-hidden">
       
@@ -156,7 +140,7 @@ export default function AddProductPage() {
         >
           <form onSubmit={handleSubmit} className="space-y-8">
             
-            {/* --- Section: Basic Info --- */}
+            {/* Basic Info */}
             <div className="space-y-6">
               <h3 className="text-lg font-bold text-gray-300 border-b border-gray-800 pb-2 flex items-center gap-2">
                 <FileText size={18} className="text-cyan-500" /> Basic Information
@@ -209,7 +193,7 @@ export default function AddProductPage() {
               </div>
             </div>
 
-            {/* --- Section: Details & Media --- */}
+            {/* Details & Media */}
             <div className="space-y-6">
               <h3 className="text-lg font-bold text-gray-300 border-b border-gray-800 pb-2 flex items-center gap-2">
                 <PackagePlus size={18} className="text-purple-500" /> Details & Media

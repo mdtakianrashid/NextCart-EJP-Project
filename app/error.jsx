@@ -12,26 +12,21 @@ export default function ErrorPage({ error, reset }) {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-center px-6 py-20">
 
-      {/* Error Icon */}
       <div className="w-20 h-20 rounded-full bg-red-100 flex items-center justify-center mb-6">
         <span className="text-4xl">⚠️</span>
       </div>
 
-      {/* Title */}
       <h1 className="text-3xl md:text-4xl font-bold text-red-600 mb-3">
         Something went wrong
       </h1>
 
-      {/* Subtitle */}
       <p className="text-gray-600 max-w-md mb-8">
         We couldn’t load this page due to an unexpected error.
         Please try again — or return to a safe page.
       </p>
 
-      {/* Buttons */}
       <div className="flex flex-col md:flex-row gap-4">
 
-        {/* Retry Button */}
         <button
           onClick={() => reset()}
           className="bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition"
@@ -39,7 +34,6 @@ export default function ErrorPage({ error, reset }) {
           Try Again
         </button>
 
-        {/* Home Button */}
         <Link
           href="/"
           className="border border-red-600 text-red-600 px-6 py-3 rounded-lg font-semibold hover:bg-red-50 transition"
@@ -48,7 +42,6 @@ export default function ErrorPage({ error, reset }) {
         </Link>
       </div>
 
-      {/* Decorative Image */}
       <div className="w-60 mt-12">
         <Image
           src="/placeholder.png"

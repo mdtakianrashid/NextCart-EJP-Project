@@ -14,9 +14,6 @@ export default function ManageProductsPage() {
   const [authorized, setAuthorized] = useState(false);
   const router = useRouter();
 
-  // ---------------------------------------------------------
-  // 1. LOGIC: Route Protection (UNCHANGED)
-  // ---------------------------------------------------------
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -29,9 +26,6 @@ export default function ManageProductsPage() {
     return () => unsubscribe();
   }, [router]);
 
-  // ---------------------------------------------------------
-  // 2. LOGIC: Fetch All Products (UNCHANGED)
-  // ---------------------------------------------------------
   const fetchProducts = async () => {
     try {
       const res = await fetch("/api/products", { cache: "no-store" });
@@ -65,15 +59,11 @@ export default function ManageProductsPage() {
     loadProducts();
   }, [authorized]);
 
-  // ---------------------------------------------------------
-  // 3. LOGIC: Delete Product (UNCHANGED)
-  // ---------------------------------------------------------
   const handleDelete = async (id) => {
     const confirmDelete = confirm("Are you sure you want to delete this product?");
     if (!confirmDelete) return;
 
     try {
-      // Optimistically remove from UI first for instant feedback
       setProducts((prev) => prev.filter((p) => String(p._id) !== String(id)));
 
       const res = await fetch(`/api/products/${id}`, {
@@ -82,7 +72,6 @@ export default function ManageProductsPage() {
       });
 
       if (!res.ok) {
-        // revert UI (refetch) and show error
         console.error("Delete request failed, status:", res.status);
         await fetchProducts();
         toast.error("Failed to delete product");
@@ -93,25 +82,19 @@ export default function ManageProductsPage() {
 
       if (data?.success) {
         toast.success("Product deleted successfully");
-        // If server returned id, ensure it's removed (defensive)
         setProducts((prev) => prev.filter((p) => String(p._id) !== String(data.id)));
       } else {
         console.warn("Delete response did not contain success:", data);
-        // re-sync from server
         await fetchProducts();
         toast.error(data?.message || "Failed to delete product");
       }
     } catch (error) {
       console.log("Delete error:", error);
-      // re-sync from server
       await fetchProducts();
       toast.error("Something went wrong");
     }
   };
 
-  // ---------------------------------------------------------
-  // 4. UI: Loading State
-  // ---------------------------------------------------------
   if (!authorized) {
     return (
       <div className="min-h-screen bg-gray-950 flex flex-col items-center justify-center text-cyan-500 font-sans">
@@ -121,9 +104,6 @@ export default function ManageProductsPage() {
     );
   }
 
-  // ---------------------------------------------------------
-  // 5. UI: Main Render (NEON DARK THEME)
-  // ---------------------------------------------------------
   return (
     <div className="min-h-screen bg-gray-950 text-gray-100 font-sans pt-24 pb-12 px-4 md:px-8">
       {/* Dark Theme Toaster */}
@@ -251,9 +231,6 @@ export default function ManageProductsPage() {
   );
 }
 
-// ---------------------------------------------------------
-// Helper Component for Visual Polish
-// ---------------------------------------------------------
 function PriorityBadge({ priority }) {
   const styles = {
     high: "bg-purple-900/30 text-purple-400 border-purple-500/30 shadow-[0_0_10px_rgba(168,85,247,0.2)]",
@@ -261,7 +238,6 @@ function PriorityBadge({ priority }) {
     low: "bg-gray-800 text-gray-400 border-gray-700",
   };
 
-  // Safe lowercasing
   const key = priority ? priority.toLowerCase() : "low";
   const currentStyle = styles[key] || styles.low;
 

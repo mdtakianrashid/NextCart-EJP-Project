@@ -1,5 +1,3 @@
-// nextcart/app/page.js
-
 "use client";
 
 import Link from "next/link";
@@ -8,17 +6,16 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ShoppingBag, Zap, ShieldCheck, Star, ArrowRight, TrendingUp } from "lucide-react";
 
-// Images for the Hero Slider
 const heroImages = [
-  "/banner1.jpg", 
-  "/banner2.jpg"
+  "/banner1.webp", 
+  "/banner2.webp"
 ];
 
 export default function HomePage() {
   const [products, setProducts] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // 1. Fetch Products
+  // Fetch Products
   useEffect(() => {
     const loadProducts = async () => {
       try {
@@ -32,7 +29,7 @@ export default function HomePage() {
     loadProducts();
   }, []);
 
-  // 2. Hero Slider Timer
+  // Hero Slider Timer
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
@@ -42,13 +39,9 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gray-950 text-gray-100 font-sans selection:bg-cyan-500 selection:text-black">
-      
-      {/* ============================= */}
-      {/* HERO SECTION (SLIDER) */}
-      {/* ============================= */}
-      <section className="relative h-[85vh] w-full overflow-hidden flex items-center justify-center">
+
+      <section className="relative h-[90vh] w-full overflow-hidden flex items-center justify-center">
         
-        {/* Background Image Slider with Stronger Overlay */}
         <AnimatePresence mode="wait">
           <motion.div
             key={currentImageIndex}
@@ -58,7 +51,6 @@ export default function HomePage() {
             transition={{ duration: 1.5 }}
             className="absolute inset-0 z-0"
           >
-            {/* Fallback color */}
             <div className="absolute inset-0 bg-gray-900" /> 
             
             <Image
@@ -68,9 +60,6 @@ export default function HomePage() {
               className="object-cover"
               priority
             />
-            
-            {/* GRADIENT OVERLAY - FIXES CONTRAST ISSUES */}
-            {/* This ensures text is ALWAYS visible regardless of the image brightness */}
             <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/50 to-gray-950/90" />
           </motion.div>
         </AnimatePresence>
@@ -121,41 +110,53 @@ export default function HomePage() {
           </motion.div>
         </div>
       </section>
+<section className="py-24 px-4 md:px-6 relative z-20">
 
-      {/* ============================= */}
-      {/* SECTION 1 – FEATURES (Dark Cards) */}
-      {/* ============================= */}
-      <section className="py-20 px-4 md:px-6 -mt-20 relative z-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-6">
-            <FeatureCard 
-              icon={<TrendingUp size={32} className="text-purple-400" />}
-              title="Trending Styles"
-              desc="Curated collections that define the modern aesthetic."
-              color="border-purple-500/30 hover:border-purple-500"
-            />
-            <FeatureCard 
-              icon={<ShieldCheck size={32} className="text-cyan-400" />}
-              title="Secure Platform"
-              desc="Bank-grade encryption for every single transaction."
-              color="border-cyan-500/30 hover:border-cyan-500"
-            />
-            <FeatureCard 
-              icon={<Star size={32} className="text-yellow-400" />}
-              title="Premium Quality"
-              desc="Verified products from top-tier global brands."
-              color="border-yellow-500/30 hover:border-yellow-500"
-            />
-          </div>
-        </div>
-      </section>
+  <div className="absolute inset-0 bg-linear-to-b from-gray-900 via-gray-950 to-black opacity-70 pointer-events-none" />
 
-      {/* ============================= */}
-      {/* SECTION 2 – TRENDING PRODUCTS */}
-      {/* ============================= */}
+  <div className="relative max-w-7xl mx-auto">
+
+    {/* Section Heading */}
+    <div className="text-center mb-16">
+      <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
+        Why Shop with <span className="text-cyan-400">NextCart?</span>
+      </h2>
+      <p className="text-gray-400 mt-4 text-lg max-w-2xl mx-auto">
+        Premium quality, blazing-fast performance & a seamless shopping journey.
+      </p>
+    </div>
+
+    {/* Feature Cards */}
+    <div className="grid md:grid-cols-3 gap-10">
+      
+      <FeatureCard 
+        icon={<TrendingUp size={38} className="text-purple-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.6)]" />}
+        title="Trending Styles"
+        desc="Curated collections that define the modern aesthetic."
+        color="border-purple-500/40 hover:border-purple-400 hover:shadow-[0_0_25px_rgba(168,85,247,0.35)]"
+      />
+
+      <FeatureCard 
+        icon={<ShieldCheck size={38} className="text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" />}
+        title="Secure Platform"
+        desc="Bank-grade encryption for every single transaction."
+        color="border-cyan-500/40 hover:border-cyan-400 hover:shadow-[0_0_25px_rgba(34,211,238,0.35)]"
+      />
+
+      <FeatureCard 
+        icon={<Star size={38} className="text-yellow-400 drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" />}
+        title="Premium Quality"
+        desc="Verified products from top-tier global brands."
+        color="border-yellow-500/40 hover:border-yellow-400 hover:shadow-[0_0_25px_rgba(234,179,8,0.35)]"
+      />
+
+    </div>
+  </div>
+</section>
+
       <section className="py-20 px-4 md:px-6 bg-gray-900/50">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+          <div className="flex justify-between items-end mb-12 gap-4">
             <div>
               <h2 className="text-3xl md:text-5xl font-bold text-white">Trending Now</h2>
               <p className="text-gray-400 mt-2 text-lg">Hottest picks of the week</p>
@@ -167,7 +168,6 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {products.length === 0 ? (
-               // Dark Skeleton Loader
               [1, 2, 3].map((i) => (
                 <div key={i} className="h-96 bg-gray-800/50 rounded-2xl animate-pulse border border-gray-700" />
               ))
@@ -188,7 +188,6 @@ export default function HomePage() {
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
-                    {/* Dark overlay on image hover */}
                     <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
                     
                     <button className="absolute bottom-4 right-4 bg-white text-black p-3 rounded-full opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-lg font-bold">
@@ -222,14 +221,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* ============================= */}
-      {/* SECTION 3 – PROMO BANNER */}
-      {/* ============================= */}
       <section className="py-20 px-4 md:px-6">
         <div className="max-w-7xl mx-auto rounded-3xl overflow-hidden relative border border-gray-800 bg-linear-to-r from-blue-900 to-purple-900">
           
-          {/* Abstract Glow Background */}
           <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500 rounded-full blur-[120px] opacity-20 pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500 rounded-full blur-[120px] opacity-20 pointer-events-none"></div>
 
@@ -260,19 +254,16 @@ export default function HomePage() {
                className="relative h-64 md:h-80 w-full"
             >
               <Image 
-                src="/placeholder.png" 
+                src="/promobanner.webp" 
                 alt="Promo" 
                 fill 
-                className="object-contain drop-shadow-2xl"
+                className="object-contain drop-shadow-2xl rounded-full"
               />
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ============================= */}
-      {/* SECTION 4 – TESTIMONIALS */}
-      {/* ============================= */}
       <section className="py-20 px-4 md:px-6 bg-gray-900">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-12 text-white">
@@ -296,10 +287,6 @@ export default function HomePage() {
     </div>
   );
 }
-
-// ------------------------------------
-// HELPER COMPONENTS
-// ------------------------------------
 
 function FeatureCard({ icon, title, desc, color }) {
   return (

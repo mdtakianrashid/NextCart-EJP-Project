@@ -24,16 +24,12 @@ export default function ProductDetailsPage() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // ---------------------------------------------------------
-  // 1. LOGIC: Fetch Product (100% Original Logic Preserved)
-  // ---------------------------------------------------------
   useEffect(() => {
     if (!id) return;
 
     const loadProduct = async () => {
       try {
         const res = await fetch(`/api/products/${id}`);
-        // Handle 404/Errors gracefully
         if (!res.ok) {
             setProduct(null);
         } else {
@@ -51,9 +47,6 @@ export default function ProductDetailsPage() {
     loadProduct();
   }, [id]);
 
-  // ---------------------------------------------------------
-  // 2. UI: Loading State (Themed)
-  // ---------------------------------------------------------
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-950 flex flex-col items-center justify-center text-cyan-500 font-sans">
@@ -63,9 +56,6 @@ export default function ProductDetailsPage() {
     );
   }
 
-  // ---------------------------------------------------------
-  // 3. UI: Not Found State (Themed)
-  // ---------------------------------------------------------
   if (!product) {
     return (
       <div className="min-h-screen bg-gray-950 flex flex-col items-center justify-center text-center px-4 font-sans">
@@ -82,19 +72,14 @@ export default function ProductDetailsPage() {
     );
   }
 
-  // ---------------------------------------------------------
-  // 4. UI: Main Render (NEON DARK THEME)
-  // ---------------------------------------------------------
   return (
     <div className="min-h-screen bg-gray-950 text-gray-100 font-sans pt-24 pb-12 px-4 md:px-8 relative overflow-hidden">
       <Toaster position="top-center" toastOptions={{ style: { background: '#1f2937', color: '#fff' } }}/>
       
-      {/* Background Decor */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Back Button */}
         <motion.button
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
@@ -125,10 +110,7 @@ export default function ProductDetailsPage() {
                 priority
               />
               
-              {/* Image Overlay Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent pointer-events-none" />
-              
-              {/* Floating Badge */}
+              <div className="absolute inset-0 bg-linear-to-t from-gray-950/80 via-transparent to-transparent pointer-events-none" />
               <div className="absolute top-6 left-6 z-10">
                 <PriorityBadge priority={product.priority} />
               </div>
@@ -150,12 +132,12 @@ export default function ProductDetailsPage() {
             <div className="flex flex-wrap items-center gap-6 mb-8 border-b border-gray-800 pb-8">
               <div className="flex flex-col">
                 <span className="text-xs text-gray-500 uppercase tracking-wider font-bold mb-1">Price</span>
-                <span className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                <span className="text-4xl font-bold text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">
                   ${product.price}
                 </span>
               </div>
               
-              <div className="h-12 w-[1px] bg-gray-800 hidden sm:block" />
+              <div className="h-12 w-px bg-gray-800 hidden sm:block" />
               
               <div className="flex flex-col">
                 <span className="text-xs text-gray-500 uppercase tracking-wider font-bold mb-1">Added On</span>
@@ -182,7 +164,7 @@ export default function ProductDetailsPage() {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mt-auto">
-              <button className="flex-1 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] flex items-center justify-center gap-3 active:scale-95">
+              <button className="flex-1 bg-linear-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] flex items-center justify-center gap-3 active:scale-95">
                 <ShoppingCart size={20} /> Add to Cart
               </button>
               
@@ -210,9 +192,6 @@ export default function ProductDetailsPage() {
   );
 }
 
-// ---------------------------------------------------------
-// Helper Component for Priority Badge
-// ---------------------------------------------------------
 function PriorityBadge({ priority }) {
   const styles = {
     high: "bg-purple-600 text-white shadow-lg shadow-purple-900/50 border-purple-400/50",

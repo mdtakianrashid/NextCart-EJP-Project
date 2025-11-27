@@ -1,5 +1,3 @@
-// components/FormInput.jsx
-
 export default function FormInput({
   label,
   name,
@@ -10,18 +8,16 @@ export default function FormInput({
   required = false,
   error = "",
   textarea = false,
-  options = [], // used for select
+  options = [],
 }) {
   return (
     <div className="w-full">
-      {/* Label */}
       {label && (
         <label className="block font-semibold mb-1" htmlFor={name}>
           {label} {required && <span className="text-red-500">*</span>}
         </label>
       )}
 
-      {/* Textarea */}
       {textarea ? (
         <textarea
           id={name}
@@ -33,7 +29,7 @@ export default function FormInput({
           className="w-full p-3 border rounded h-28 focus:outline-none focus:ring focus:ring-blue-200"
         ></textarea>
       ) : options.length > 0 ? (
-        // Select Dropdown
+
         <select
           id={name}
           name={name}
@@ -49,7 +45,7 @@ export default function FormInput({
           ))}
         </select>
       ) : (
-        // Regular Input
+
         <input
           id={name}
           name={name}
@@ -62,7 +58,6 @@ export default function FormInput({
         />
       )}
 
-      {/* Error Message */}
       {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
     </div>
   );

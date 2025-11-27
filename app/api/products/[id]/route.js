@@ -1,4 +1,3 @@
-// nextcart/app/api/products/[id]/route.js
 import connectDB from "@/lib/db";
 import Product from "@/models/Product";
 import { NextResponse } from "next/server";
@@ -7,7 +6,6 @@ export const dynamic = "force-dynamic";
 
 export async function GET(request, { params }) {
   try {
-    // params is a Promise in this environment — unwrap it
     const resolvedParams = await params;
     const id = resolvedParams?.id;
 

@@ -15,7 +15,6 @@ export default function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // 1. Track Auth State
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser || null);
@@ -23,7 +22,6 @@ export default function Navbar() {
     return () => unsubscribe();
   }, []);
 
-  // 2. Handle Scroll for Glass Effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -38,7 +36,6 @@ export default function Navbar() {
     setMenuOpen(false);
   };
 
-  // Helper for Link Styling
   const linkClass = (path) =>
     pathname === path
       ? "text-cyan-400 font-semibold drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]"
@@ -142,7 +139,7 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* MOBILE MENU TOGGLE */}
+        {/* MOBILE MENU */}
         <button
           className="md:hidden text-gray-300 hover:text-white"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -151,7 +148,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* MOBILE MENU OVERLAY */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div

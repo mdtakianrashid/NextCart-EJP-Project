@@ -1,5 +1,3 @@
-// nextcart/app/layout.js
-
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -15,18 +13,14 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-gray-50 text-gray-800">
 
-        {/* Global Toaster */}
         <Toaster position="top-center" />
 
-        {/* Navbar */}
         <Navbar />
 
-        {/* Main Content */}
         <main className="min-h-screen pt-20">
           {children}
         </main>
 
-        {/* Footer */}
         <Footer />
       </body>
     </html>

@@ -23,7 +23,6 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
 
-  // =============== EMAIL-PASSWORD LOGIN ===============
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -40,7 +39,6 @@ export default function LoginPage() {
     setLoading(false);
   };
 
-  // ====================== GOOGLE LOGIN ======================
   const handleGoogleLogin = async () => {
     setGoogleLoading(true);
 
@@ -62,7 +60,6 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center px-4 bg-gray-950 relative overflow-hidden font-sans">
       <Toaster position="top-center" />
 
-      {/* Background Glows */}
       <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-cyan-500/20 rounded-full blur-[120px]" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px]" />
 

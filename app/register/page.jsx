@@ -38,9 +38,6 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
 
-  // =============================
-  // 1. HANDLE EMAIL REGISTRATION
-  // =============================
   const handleRegister = async (e) => {
     e.preventDefault();
 
@@ -64,9 +61,6 @@ export default function RegisterPage() {
     setLoading(false);
   };
 
-  // =============================
-  // 2. GOOGLE SIGN-IN
-  // =============================
   const handleGoogleSignup = async () => {
     setGoogleLoading(true);
 
@@ -88,7 +82,6 @@ export default function RegisterPage() {
     <div className="min-h-screen flex items-center justify-center px-4 bg-gray-950 relative overflow-hidden font-sans">
       <Toaster position="top-center" />
 
-      {/* Background Glow */}
       <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[120px]" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-cyan-600/20 rounded-full blur-[120px]" />
 
@@ -124,7 +117,6 @@ export default function RegisterPage() {
           )}
         </button>
 
-        {/* Divider */}
         <div className="relative flex py-2 items-center mb-6">
           <div className="grow border-t border-gray-700"></div>
           <span className="mx-4 text-gray-500 text-xs uppercase tracking-wider">
