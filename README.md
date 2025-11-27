@@ -148,8 +148,8 @@ nextcart/
 ## 1️⃣ Clone the Repository
 
 ```bash
-git clone <your-github-repo-link>
-cd nextcart
+git clone https://github.com/mdtajrianrashid/NextCart-EJP-Project.git
+cd NextCart-EJP-Project
 ```
 
 ## 2️⃣ Install Dependencies
