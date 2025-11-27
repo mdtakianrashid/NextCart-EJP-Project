@@ -61,7 +61,7 @@ export default function ProductsPage() {
             <motion.h1 
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="text-4xl md:text-5xl font-extrabold mb-2 text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500"
+              className="text-4xl md:text-5xl font-extrabold mb-2 text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500"
             >
               All Products
             </motion.h1>

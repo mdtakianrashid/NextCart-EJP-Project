@@ -5,42 +5,51 @@ import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
-// GET SINGLE PRODUCT
-export async function GET(_, { params }) {
+export async function GET(request, { params }) {
   try {
-    await connectDB();
-    const product = await Product.findById(params.id);
+    // params is a Promise in this environment — unwrap it
+    const resolvedParams = await params;
+    const id = resolvedParams?.id;
 
-    if (!product)
+    if (!id) {
+      return NextResponse.json({ error: "No id provided" }, { status: 400 });
+    }
+
+    await connectDB();
+
+    const product = await Product.findById(id);
+
+    if (!product) {
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
+    }
 
     return NextResponse.json(product);
   } catch (error) {
+    console.error("GET /api/products/[id] ERROR:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
 
-// DELETE PRODUCT
-export async function DELETE(_, { params }) {
+export async function DELETE(request, { params }) {
   try {
+    const resolvedParams = await params;
+    const id = resolvedParams?.id;
+
+    if (!id) {
+      return NextResponse.json({ success: false, message: "No id provided" }, { status: 400 });
+    }
+
     await connectDB();
 
-    // ADD THESE LOGS ↓↓↓
-    console.log("Connected DB:", mongoose.connection.name);
-    console.log("Deleting ID:", params.id);
-
-    const found = await Product.findById(params.id);
-    console.log("Found before delete:", found);
-    // END OF DEBUG LOGS ↑↑↑
-
-    const deleted = await Product.findByIdAndDelete(params.id);
+    const deleted = await Product.findByIdAndDelete(id);
 
     if (!deleted) {
       return NextResponse.json({ success: false, message: "Product not found" }, { status: 404 });
     }
 
-    return NextResponse.json({ success: true, id: params.id });
+    return NextResponse.json({ success: true, id });
   } catch (error) {
+    console.error("DELETE /api/products/[id] ERROR:", error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
