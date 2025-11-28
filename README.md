@@ -8,7 +8,7 @@ The application includes a polished UI, full authentication, protected dashboard
 ---
 
 ## 🚀 Live Demo  
-👉 Add your deployed Vercel link here
+👉 [(https://next-cart-ejp-project.vercel.app/)]
 
 ## 📦 GitHub Repository  
 👉 [(https://github.com/mdtajrianrashid/NextCart-EJP-Project)]
