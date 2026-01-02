@@ -220,4 +220,14 @@ Sessions are handled via cookies after Firebase login.
 
 ---
 
+## 👨‍💻 Author
+
+**Takian Rashid**  
+Frontend & Full-Stack Developer | Aspiring Software Engineer
+
+- **GitHub:** https://github.com/mdtakianrashid  
+- **LinkedIn:** https://www.linkedin.com/in/mdtakianrashid/
+
+---
+
 # 🎉 Thank You!
